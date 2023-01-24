@@ -1,4 +1,4 @@
 # tip_distribute_calc
-Tip calculator that distrubutes base off of employees per shift
+Tip calculator that distrubutes tips by the number of employees per shift.
 
 Very much a work in progress.
