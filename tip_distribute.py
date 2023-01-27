@@ -1,6 +1,6 @@
 from art import logo
 
-todo = "TODO LIST: Need to assign and save tip_dist to emp_list.\nProbably need to learn dictionaries to do that....\n\n\n"
+todo = "TODO LIST: Just gonna restart but use this one to learn more about git, specifically branches....\n\n\n"
 
 stay_open = True
 shift_total = 1
