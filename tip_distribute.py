@@ -14,8 +14,6 @@ print("This is a 'very' simple tip distribution calculator.\nTips are first dist
 def names():
     return input("Enter names her followed by spaces:\nEx. 'John, Beth, Sarah'\n\n: ").lower().split(", ")
 
-
-
 def tips():
     return float(input("Total at end of shift:\n\n$"))
 
@@ -26,10 +24,12 @@ def shifts(n):
         "Tip Total": tips(),
         "Workers": names(),
     })
+    
 def distips():
     global EMP_LIST
     tip_dist = EMP_LIST[SHIFT]["Tip Total"] / EMP_NUM
     EMP_LIST[SHIFT]["Tips Split"] = tip_dist
+    
 def tip_calc():
     global EMP_NUM
     next_shift = True
