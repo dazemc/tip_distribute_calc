@@ -1,40 +1,47 @@
 from art import logo
 
-todo = "TODO LIST: Just gonna restart but use this one to learn more about git, specifically branches....\n\n\n"
+#Much better, need to create a dictionary "workers{}" that takes name as key and sum of tips from EMP_LIST as value
 
-stay_open = True
-shift_total = 1
-emp_list = []
-tip_total = 0
-
+EMP_LIST = []
+SHIFT = 0
+EMP_NUM = 0
 
 print(logo)
 print("This is a 'very' simple tip distribution calculator.\nTips are first distributed into shifts.\nThen evenly across number of employees who worked that shift.\n\n")
-print(todo)
 
-while stay_open:
-    if shift_total > 1:
-        tip_total = float(input(f"Tip total for shift {shift_total}:\n$ ")) - tip_total
-    elif shift_total <= 1:
-        tip_total += float(input(f"Tip total of shift {shift_total}:\n$ "))
-    emp_num = int(input("How many people worked?\n"))
-    tip_dist = round(tip_total / emp_num, 2)
+
+#Find names for shifts
+def names():
+    return input("Enter names her followed by spaces:\nEx. 'John, Beth, Sarah'\n\n: ").lower().split(", ")
 
 
 
-    #Gets list of employee names
-    for i in range(1, emp_num + 1):
-        name_add = input(f"Name of employee number {i}: ")
-        if name_add not in emp_list:
-            emp_list += [name_add]
+def tips():
+    return float(input("Total at end of shift:\n\n$"))
 
-    #prints out employees tip total
-    print(f"Shift {shift_total} made ${tip_total}")
-    for emp in emp_list:
-        print(f"{emp} made ${tip_dist}")
+def shifts(n):
+    global EMP_LIST
+    EMP_LIST.append({
+        "Shift": n,
+        "Tip Total": tips(),
+        "Workers": names(),
+    })
+def distips():
+    global EMP_LIST
+    tip_dist = EMP_LIST[SHIFT]["Tip Total"] / EMP_NUM
+    EMP_LIST[SHIFT]["Tips Split"] = tip_dist
+def tip_calc():
+    global EMP_NUM
+    next_shift = True
+    while next_shift:
+        shifts(SHIFT)
+        EMP_NUM = len(EMP_LIST[SHIFT]["Workers"])
+        distips()
+        next = input("Next shift?\nEnter 'Y' to continue").lower()
+        if next != 'y':
+            print(EMP_LIST)
+            next_shift = False
 
-    #Continue?
-    stop_p = input("Press enter to continue to next shift. Or 'q' to quit.\n").lower()
-    if stop_p == "q":
-        stay_open = False
-    shift_total += 1
+tip_calc()
+SHIFT += 1
+
